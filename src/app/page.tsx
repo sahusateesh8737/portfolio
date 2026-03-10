@@ -2,6 +2,8 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
+import Tools from "@/components/Tools";
+import CodingProfiles from "@/components/CodingProfiles";
 import Contact from "@/components/Contact";
 
 export default function Home() {
@@ -11,6 +13,8 @@ export default function Home() {
       <About />
       <Skills />
       <Projects />
+      <Tools />
+      <CodingProfiles />
       <Contact />
       {/* Sections will be added here */}
     </div>
