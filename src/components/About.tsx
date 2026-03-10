@@ -26,31 +26,6 @@ export default function About() {
       {/* Dynamic Dot Pattern Background */}
       <div className="absolute inset-0 bg-[radial-gradient(#1a1a5a_2px,transparent_2px)] bg-[length:2rem_2rem] opacity-70 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] pointer-events-none" />
       
-      {/* Name connecting the dots SVG Overlay */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20" xmlns="http://www.w3.org/2000/svg">
-         <motion.path
-            d="
-            M 192 128 L 64 128 L 64 256 L 192 256 L 192 384 L 64 384
-            M 256 384 L 256 128 L 384 128 L 384 384 M 256 256 L 384 256
-            M 448 128 L 576 128 M 512 128 L 512 384
-            M 640 128 L 768 128 M 704 128 L 704 384 M 640 384 L 768 384
-            M 960 128 L 832 128 L 832 256 L 960 256 L 960 384 L 832 384
-            M 1024 128 L 1024 384 M 1152 128 L 1152 384 M 1024 256 L 1152 256
-            "
-            stroke="var(--color-neon-cyan)"
-            strokeWidth="2"
-            fill="none"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut"
-            }}
-         />
-      </svg>
-      
       {/* Decorative Glowing Orbs */}
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-neon-cyan/5 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
       <div className="absolute bottom-0 right-1/4 w-[30rem] h-[30rem] bg-neon-blue/5 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
