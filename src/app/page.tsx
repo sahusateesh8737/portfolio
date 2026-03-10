@@ -8,15 +8,16 @@ import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-20 pb-20">
+    <div className="flex flex-col pb-20">
       <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Tools />
-      <CodingProfiles />
-      <Contact />
-      {/* Sections will be added here */}
+      <div className="flex flex-col gap-20">
+        <About />
+        <Skills />
+        <Projects />
+        <Tools />
+        <CodingProfiles />
+        <Contact />
+      </div>
     </div>
   );
 }
