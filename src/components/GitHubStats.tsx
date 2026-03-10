@@ -21,8 +21,13 @@ export default function GitHubStats() {
   useEffect(() => {
     const fetchGitHub = async () => {
       try {
+        const headers: HeadersInit = {};
+        if (process.env.NEXT_PUBLIC_GITHUB_TOKEN) {
+          headers['Authorization'] = `token ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`;
+        }
+
         // Fetch User Data
-        const userRes = await fetch('https://api.github.com/users/sahusateesh8737');
+        const userRes = await fetch('https://api.github.com/users/sahusateesh8737', { headers });
         
         if (userRes.status === 403) {
             throw new Error("Rate Limit Exceeded");
@@ -31,7 +36,7 @@ export default function GitHubStats() {
         const userData = await userRes.json();
         
         // Fetch Repos
-        const reposRes = await fetch('https://api.github.com/users/sahusateesh8737/repos?sort=updated&per_page=5');
+        const reposRes = await fetch('https://api.github.com/users/sahusateesh8737/repos?sort=updated&per_page=5', { headers });
         const reposData = await reposRes.json();
 
         setStats({
