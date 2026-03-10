@@ -22,60 +22,109 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-20 px-6 max-w-7xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="mb-16 text-center"
-      >
-        <h2 className="text-4xl md:text-5xl font-bold mb-4 font-mono">
-          <span className="text-neon-cyan">01.</span> About Me
-        </h2>
-        <div className="h-1 w-20 bg-neon-cyan mx-auto rounded-full" />
-      </motion.div>
+    <section id="about" className="relative py-32 overflow-hidden">
+      {/* Dynamic Dot Pattern Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(#1a1a5a_2px,transparent_2px)] bg-[length:2rem_2rem] opacity-70 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] pointer-events-none" />
+      
+      {/* Name connecting the dots SVG Overlay */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20" xmlns="http://www.w3.org/2000/svg">
+         <motion.path
+            d="
+            M 192 128 L 64 128 L 64 256 L 192 256 L 192 384 L 64 384
+            M 256 384 L 256 128 L 384 128 L 384 384 M 256 256 L 384 256
+            M 448 128 L 576 128 M 512 128 L 512 384
+            M 640 128 L 768 128 M 704 128 L 704 384 M 640 384 L 768 384
+            M 960 128 L 832 128 L 832 256 L 960 256 L 960 384 L 832 384
+            M 1024 128 L 1024 384 M 1152 128 L 1152 384 M 1024 256 L 1152 256
+            "
+            stroke="var(--color-neon-cyan)"
+            strokeWidth="2"
+            fill="none"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut"
+            }}
+         />
+      </svg>
+      
+      {/* Decorative Glowing Orbs */}
+      <div className="absolute top-1/4 left-0 w-96 h-96 bg-neon-cyan/5 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
+      <div className="absolute bottom-0 right-1/4 w-[30rem] h-[30rem] bg-neon-blue/5 rounded-full blur-[120px] pointer-events-none mix-blend-screen" />
 
-      <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 px-6 max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="space-y-6 text-lg text-gray-400 leading-relaxed"
+          className="mb-20 text-center"
         >
-          <p>
-            Hello! I'm <span className="text-white font-bold">Satish Sahu</span>, a passionate software engineer currently pursuing my B.Tech in CSE from <span className="text-neon-cyan">Lovely Professional University</span>.
-          </p>
-          <p>
-            My journey in tech is driven by curiosity and a relentless desire to build things that matter. 
-            I specialize in the <span className="text-white">MERN stack</span> (MongoDB, Express, React, Node.js) and have a strong foundation in C++ and Python.
-          </p>
-          <p>
-            When I'm not coding, you can find me exploring new technologies, participating in coding contests, or brainstorming the next big idea.
-          </p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-mono">
+            <span className="text-neon-cyan">01.</span> About Me
+          </h2>
+          <div className="h-1 w-20 bg-neon-cyan mx-auto rounded-full shadow-[0_0_10px_rgba(0,243,255,0.5)]" />
         </motion.div>
 
-        <div className="space-y-8 relative pl-8 border-l-2 border-neon-cyan/20">
-          {education.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-6 text-lg text-gray-300 leading-relaxed bg-white/5 backdrop-blur-md p-8 md:p-10 rounded-3xl border border-white/10 hover:border-neon-cyan/30 transition-colors shadow-2xl relative group"
+          >
+            {/* Top-left decorative corner */}
+            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-neon-cyan/50 rounded-tl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            
+            <p>
+              Hello! I'm <span className="text-white font-bold text-glow">Satish Sahu</span>, a passionate software engineer currently pursuing my B.Tech in CSE from <span className="text-neon-cyan">Lovely Professional University</span>.
+            </p>
+            <p>
+              My journey in tech is driven by curiosity and a relentless desire to build things that matter. 
+              I specialize in the <span className="text-white font-semibold">MERN stack</span> (MongoDB, Express, React, Node.js) and have a strong foundation in C++ and Python.
+            </p>
+            <p>
+              When I'm not coding, you can find me exploring new technologies, participating in coding contests, or brainstorming the next big idea.
+            </p>
+            
+            {/* Bottom-right decorative corner */}
+            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-neon-cyan/50 rounded-br-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </motion.div>
+
+          <div className="space-y-8 relative pl-8 border-l border-white/20">
+            {/* Glowing line overlay */}
+            <motion.div 
+              initial={{ height: 0 }}
+              whileInView={{ height: '100%' }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              className="relative"
-            >
-              <div className="absolute -left-[41px] bg-black border-2 border-neon-cyan p-2 rounded-full">
-                <item.icon className="text-neon-cyan text-sm" />
-              </div>
-              
-              <div className="bg-tech-gray p-6 rounded-xl border border-white/5 hover:border-neon-cyan/50 transition-colors">
-                <span className="text-sm text-neon-cyan font-mono mb-2 block">{item.year}</span>
-                <h3 className="text-xl font-bold text-white mb-1">{item.title}</h3>
-                <h4 className="text-gray-400 mb-3 text-sm">{item.institution}</h4>
-                <p className="text-gray-500 text-sm">{item.description}</p>
-              </div>
-            </motion.div>
-          ))}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+              className="absolute top-0 left-0 w-px bg-linear-to-b from-neon-cyan via-neon-blue to-transparent transform -translate-x-1/2" 
+            />
+
+            {education.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 }}
+                className="relative group"
+              >
+                <div className="absolute -left-[45px] top-1 bg-[#0a0a0a] border border-neon-cyan p-2.5 rounded-full group-hover:bg-neon-cyan/20 transition-colors duration-300 shadow-[0_0_10px_rgba(0,243,255,0.2)]">
+                  <item.icon className="text-neon-cyan text-sm" />
+                </div>
+                
+                <div className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-neon-cyan/40 hover:bg-white/10 transition-all duration-300 shadow-lg group-hover:-translate-y-1">
+                  <span className="text-sm text-neon-cyan font-mono mb-2 block">{item.year}</span>
+                  <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                  <h4 className="text-gray-300 mb-3 text-sm font-medium">{item.institution}</h4>
+                  <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

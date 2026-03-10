@@ -21,6 +21,7 @@ const config: Config = {
       },
       fontFamily: {
         mono: ['"JetBrains Mono"', "monospace"],
+        sans: ['"Ranade"', 'sans-serif'],
       },
       animation: {
         "spin-slow": "spin 3s linear infinite",

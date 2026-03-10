@@ -9,28 +9,8 @@ export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
 
-  const [particles, setParticles] = useState<{x: number, y: number, duration: number, delay: number}[]>([]);
-
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.to('.hero-bg-grid', {
-        backgroundPosition: '100px 100px',
-        duration: 20,
-        repeat: -1,
-        ease: 'none',
-      });
-    }, containerRef);
-
-    // Generate particles on client side to avoid hydration mismatch
-    const newParticles = Array.from({ length: 20 }).map(() => ({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      duration: Math.random() * 5 + 5,
-      delay: Math.random() * 5
-    }));
-    setParticles(newParticles);
-
-    return () => ctx.revert();
+    // Animations removed
   }, []);
 
   const typingContainer = {
@@ -54,7 +34,7 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Dynamic Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 hero-bg-grid" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1a1a5a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a5a_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_60%_at_0%_0%,#000_30%,transparent_100%),radial-gradient(ellipse_60%_60%_at_100%_100%,#000_30%,transparent_100%)] opacity-95 hero-bg-grid" />
       
       <div className="absolute inset-0 bg-linear-to-b from-transparent via-background/50 to-background pointer-events-none" />
 
@@ -84,7 +64,7 @@ export default function Hero() {
               <span className="text-neon-cyan">&lt;</span> Full Stack Engineer <span className="text-neon-cyan">/&gt;</span>
             </h2>
             
-            <p className="text-lg text-gray-300 max-w-xl mx-auto md:mx-0 mb-10 leading-relaxed">
+            <p className="text-lg text-gray-300 max-w-xl mx-auto md:mx-0 mb-10 leading-relaxed font-sans tracking-wide">
               Crafting high-performance digital experiences. B.Tech CSE Student at Lovely Professional University.
               Specializing in modern web technologies and scalable architectures.
             </p>
@@ -126,7 +106,7 @@ export default function Hero() {
               <img 
                 src="/satish.jpg" 
                 alt="Satish Sahu" 
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer"
               />
             </div>
           </div>
@@ -144,30 +124,32 @@ export default function Hero() {
 
       </div>
 
-      {/* Floating Elements Animation */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {particles.map((p, i) => (
-          <motion.div
-            key={i}
-            className="absolute bg-neon-blue/10 w-2 h-2 rounded-full"
-            initial={{ 
-              x: p.x, 
-              y: p.y,
-              opacity: 0 
-            }}
-            animate={{ 
-              y: [null, -100],
-              opacity: [0, 1, 0]
-            }}
-            transition={{ 
-              duration: p.duration, 
-              repeat: Infinity, 
-              ease: "linear",
-              delay: p.delay
-            }}
-          />
-        ))}
-      </div>
+      {/* Corner Animations */}
+      <motion.div 
+        className="absolute top-0 right-0 w-96 h-96 bg-neon-cyan/30 rounded-full blur-[100px] pointer-events-none mix-blend-screen"
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.4, 0.8, 0.4],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div 
+        className="absolute bottom-0 left-0 w-[30rem] h-[30rem] bg-neon-blue/30 rounded-full blur-[120px] pointer-events-none mix-blend-screen"
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.3, 0.7, 0.3],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1
+        }}
+      />
     </section>
   );
 }

@@ -1,3 +1,4 @@
+@import url('https://api.fontshare.com/v2/css?f[]=ranade@400,500,700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -8,6 +9,7 @@
   --foreground: #ededed;
   
   --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Ranade", sans-serif;
   
   --animate-spin-slow: spin 3s linear infinite;
 }
@@ -20,7 +22,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-mono); /* Use the theme font */
+  font-family: var(--font-sans); /* Use the theme font */
   overflow-x: hidden;
 }
 
