@@ -18,7 +18,30 @@ export default function Hero() {
     show: {
       opacity: 1,
       transition: {
+        delayChildren: 2.2,
         staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const typingContainerSubtitle = {
+    hidden: { opacity: 1 },
+    show: {
+      opacity: 1,
+      transition: {
+        delayChildren: 3.6,
+        staggerChildren: 0.05,
+      },
+    },
+  };
+
+  const typingContainerBio = {
+    hidden: { opacity: 1 },
+    show: {
+      opacity: 1,
+      transition: {
+        delayChildren: 4.8,
+        staggerChildren: 0.02,
       },
     },
   };
@@ -58,16 +81,43 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.8 }}
+            transition={{ delay: 3.5, duration: 0.8 }}
           >
-            <h2 className="text-2xl md:text-3xl text-gray-200 mb-6 font-mono">
-              <span className="text-neon-cyan">&lt;</span> Full Stack Engineer <span className="text-neon-cyan">/&gt;</span>
-            </h2>
+            <motion.h2 
+              variants={typingContainerSubtitle}
+              initial="hidden"
+              animate="show"
+              className="text-2xl md:text-3xl text-gray-200 mb-6 font-mono flex flex-wrap justify-center md:justify-start"
+            >
+              <span className="text-neon-cyan mr-3">&lt;</span>
+              {Array.from("Full Stack Engineer").map((letter, index) => (
+                <motion.span key={index} variants={typingLetter} className="inline-block">
+                  {letter === " " ? "\u00A0" : letter}
+                </motion.span>
+              ))}
+              <span className="text-neon-cyan ml-3">/&gt;</span>
+            </motion.h2>
             
-            <p className="text-lg text-gray-300 max-w-xl mx-auto md:mx-0 mb-10 leading-relaxed font-sans tracking-wide">
-              Crafting high-performance digital experiences. B.Tech CSE Student at Lovely Professional University.
-              Specializing in modern web technologies and scalable architectures.
-            </p>
+            <motion.p 
+              variants={typingContainerBio}
+              initial="hidden"
+              animate="show"
+              className="text-lg text-gray-300 max-w-xl mx-auto md:mx-0 mb-10 leading-relaxed font-sans tracking-wide"
+            >
+              {[
+                "Crafting high-performance digital experiences.",
+                " B.Tech CSE Student at Lovely Professional University.",
+                " Specializing in modern web technologies and scalable architectures.",
+              ].map((sentence, sIdx) => (
+                <span key={sIdx}>
+                  {Array.from(sentence).map((letter, index) => (
+                    <motion.span key={index} variants={typingLetter} className="inline-block">
+                      {letter === " " ? "\u00A0" : letter}
+                    </motion.span>
+                  ))}
+                </span>
+              ))}
+            </motion.p>
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center md:justify-start">
               <motion.a
@@ -94,7 +144,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}
+          transition={{ delay: 2.5, duration: 0.8, type: 'spring', stiffness: 100 }}
           className="relative shrink-0"
         >
           {/* Outer glow ring */}
@@ -115,7 +165,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            transition={{ delay: 3.2, duration: 0.5 }}
             className="absolute -bottom-4 -right-4 md:bottom-2 md:right-2 lg:bottom-4 lg:right-4 p-4 lg:p-5 rounded-full bg-black border border-neon-cyan shadow-[0_0_15px_rgba(0,243,255,0.5)] z-20"
           >
             <FaCode className="text-2xl lg:text-3xl text-neon-cyan" />

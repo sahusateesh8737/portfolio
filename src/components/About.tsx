@@ -32,9 +32,10 @@ export default function About() {
 
       <div className="relative z-10 px-6 max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
           className="mb-20 text-center"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 font-mono">
@@ -45,9 +46,10 @@ export default function About() {
 
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, x: -100, scale: 0.95 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            viewport={{ once: false, margin: "-100px" }}
+            transition={{ duration: 0.7, type: "spring", stiffness: 50 }}
             className="space-y-6 text-lg text-gray-300 leading-relaxed bg-white/5 backdrop-blur-md p-8 md:p-10 rounded-3xl border border-white/10 hover:border-neon-cyan/30 transition-colors shadow-2xl relative group"
           >
             {/* Top-left decorative corner */}
@@ -73,7 +75,7 @@ export default function About() {
             <motion.div 
               initial={{ height: 0 }}
               whileInView={{ height: '100%' }}
-              viewport={{ once: true }}
+              viewport={{ once: false, margin: "-100px" }}
               transition={{ duration: 1.5, ease: "easeInOut" }}
               className="absolute top-0 left-0 w-px bg-linear-to-b from-neon-cyan via-neon-blue to-transparent transform -translate-x-1/2" 
             />
@@ -81,10 +83,10 @@ export default function About() {
             {education.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: 50 }}
+                initial={{ opacity: 0, x: 100 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
+                viewport={{ once: false, margin: "-50px" }}
+                transition={{ duration: 0.6, type: "spring", stiffness: 60, delay: index * 0.2 }}
                 className="relative group"
               >
                 <div className="absolute -left-[45px] top-1 bg-[#0a0a0a] border border-neon-cyan p-2.5 rounded-full group-hover:bg-neon-cyan/20 transition-colors duration-300 shadow-[0_0_10px_rgba(0,243,255,0.2)]">
