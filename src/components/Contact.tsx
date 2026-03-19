@@ -59,7 +59,7 @@ export default function Contact() {
         className="mb-16 text-center"
       >
         <h2 className="text-4xl md:text-5xl font-bold mb-4 font-mono">
-          <span className="text-neon-cyan">04.</span> Get In Touch
+          <span className="text-neon-cyan">07.</span> Get In Touch
         </h2>
         <div className="h-1 w-20 bg-neon-cyan mx-auto rounded-full" />
       </motion.div>

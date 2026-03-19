@@ -46,7 +46,7 @@ export default function Certifications() {
         className="mb-16 text-center relative z-10"
       >
         <h2 className="text-4xl md:text-5xl font-bold mb-4 font-mono">
-          <span className="text-neon-cyan">04.</span> Certifications
+          <span className="text-neon-cyan">05.</span> Certifications
         </h2>
         <div className="h-1 w-20 bg-neon-cyan mx-auto rounded-full" />
       </motion.div>

@@ -3,11 +3,13 @@
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { useEffect, useRef, useState } from 'react';
-import { FaCode } from 'react-icons/fa';
+import { FaCode, FaDownload } from 'react-icons/fa';
+import CVModal from './CVModal';
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
+  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
 
   useEffect(() => {
     // Animations removed
@@ -129,11 +131,22 @@ export default function Hero() {
               >
                 View Projects
               </motion.a>
+              
+              <motion.button
+                whileHover={{ scale: 1.05, backgroundColor: "rgba(0, 243, 255, 0.1)" }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsCVModalOpen(true)}
+                className="px-8 py-4 bg-transparent text-neon-cyan font-bold rounded-lg border border-neon-cyan/50 hover:border-neon-cyan transition-colors text-center flex items-center justify-center gap-2"
+              >
+                <FaDownload className="text-sm" />
+                <span>Resume / CV</span>
+              </motion.button>
+
               <motion.a
                 whileHover={{ scale: 1.05, backgroundColor: "rgba(0, 243, 255, 0.1)" }}
                 whileTap={{ scale: 0.95 }}
                 href="#contact"
-                className="px-8 py-4 bg-transparent text-neon-cyan font-bold rounded-lg border border-neon-cyan/50 hover:border-neon-cyan transition-colors text-center"
+                className="px-8 py-4 bg-transparent text-gray-400 font-bold rounded-lg border border-white/20 hover:border-white/50 transition-colors text-center"
               >
                 Contact Me
               </motion.a>
@@ -174,6 +187,13 @@ export default function Hero() {
         </motion.div>
 
       </div>
+
+      {/* CV Modal */}
+      <CVModal 
+        isOpen={isCVModalOpen} 
+        onClose={() => setIsCVModalOpen(false)} 
+        cvUrl="/satish updated cv.pdf" 
+      />
 
       {/* Corner Animations */}
       <motion.div 
