@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
@@ -33,6 +34,8 @@ const projects = [
     glow: 'bg-green-500/20',
   },
 ];
+
+const ProjectsParticlesWrapper = dynamic(() => import('./ProjectsParticles'), { ssr: false });
 
 const ProjectCard = ({ project, index }: { project: any, index: number }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -73,10 +76,33 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
             <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
             <div className="w-3 h-3 rounded-full bg-green-500/80" />
           </div>
-          {/* Content Area placeholder */}
-          <div className={`aspect-video w-full ${project.image} opacity-90 transition-opacity duration-500 group-hover:opacity-100 relative overflow-hidden`}>
-            {/* Glossy reflection effect */}
-            <div className="absolute inset-0 bg-linear-to-tr from-white/0 via-white/5 to-white/20 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+          {/* Content Area - Live Preview */}
+          <div className="relative w-full aspect-video bg-[#0a0a0a] overflow-hidden group/iframe">
+            
+            {/* Loading Indicator (shows beneath iframe) */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-500 z-0">
+               <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-neon-cyan mb-4"></div>
+               <span className="text-xs font-mono">Loading Interactive Preview...</span>
+            </div>
+
+            {/* The Live Interactive App */}
+            <iframe 
+               src={project.demo} 
+               title={`${project.title} Live Preview`}
+               className="relative z-10 w-full h-full border-0 opacity-80 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover/iframe:pointer-events-auto"
+               loading="lazy"
+               sandbox="allow-scripts allow-same-origin"
+            />
+            
+            {/* Overlay to prevent accidental scrolling when just scrolling past the portfolio */}
+            <div className="absolute inset-0 z-20 bg-black/20 group-hover/iframe:opacity-0 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+               <span className="opacity-0 group-hover:opacity-100 bg-black/80 text-white border border-neon-cyan/50 px-4 py-2 rounded-full font-mono text-sm shadow-[0_0_15px_rgba(0,255,255,0.3)] transition-all transform scale-95 group-hover:scale-100 group-hover/iframe:hidden">
+                 Hover to Interact
+               </span>
+            </div>
+            
+            {/* Glossy reflection effect overlay */}
+            <div className="absolute inset-0 z-30 pointer-events-none bg-linear-to-tr from-white/0 via-white/5 to-white/10 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
           </div>
         </div>
       </motion.div>
@@ -132,12 +158,48 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 px-6 max-w-7xl mx-auto overflow-hidden">
+    <section id="projects" className="relative py-24 px-6 max-w-7xl mx-auto overflow-hidden">
+      {/* === Cosmic Background Layer === */}
+      <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
+        {/* Purple/Magenta glow orb - left side */}
+        <div
+          className="absolute top-1/4 left-1/6 w-[500px] h-[500px] rounded-full opacity-30 animate-pulse-slow"
+          style={{
+            background: 'radial-gradient(circle, rgba(168,85,247,0.6) 0%, rgba(139,92,246,0.3) 30%, rgba(124,58,237,0.1) 60%, transparent 80%)',
+            filter: 'blur(60px)',
+          }}
+        />
+        {/* Cyan/Blue glow orb - right side */}
+        <div
+          className="absolute top-1/2 right-1/6 w-[450px] h-[450px] rounded-full opacity-25 animate-pulse-slow"
+          style={{
+            background: 'radial-gradient(circle, rgba(6,182,212,0.6) 0%, rgba(59,130,246,0.3) 30%, rgba(99,102,241,0.1) 60%, transparent 80%)',
+            filter: 'blur(60px)',
+            animationDelay: '2s',
+          }}
+        />
+        {/* Deep purple secondary glow */}
+        <div
+          className="absolute bottom-1/4 left-1/3 w-[350px] h-[350px] rounded-full opacity-20 animate-pulse-slow"
+          style={{
+            background: 'radial-gradient(circle, rgba(217,70,239,0.4) 0%, rgba(168,85,247,0.15) 40%, transparent 70%)',
+            filter: 'blur(80px)',
+            animationDelay: '4s',
+          }}
+        />
+      </div>
+
+      {/* === Particles Layer === */}
+      <div className="absolute inset-0 -z-5 pointer-events-none">
+        <ProjectsParticlesWrapper />
+      </div>
+
+      {/* === Content === */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="mb-24 text-center"
+        className="mb-24 text-center relative z-10"
       >
         <h2 className="text-4xl md:text-5xl font-bold mb-4 font-mono">
           <span className="text-neon-cyan">03.</span> Featured Projects
@@ -145,7 +207,7 @@ export default function Projects() {
         <div className="h-1 w-20 bg-neon-cyan mx-auto rounded-full" />
       </motion.div>
 
-      <div className="flex flex-col gap-24 md:gap-32 lg:gap-40">
+      <div className="flex flex-col gap-24 md:gap-32 lg:gap-40 relative z-10">
         {projects.map((project, index) => (
           <ProjectCard key={project.title} project={project} index={index} />
         ))}

@@ -53,6 +53,7 @@ export default function Hero() {
 
   return (
     <section
+      id="home"
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
@@ -188,7 +189,7 @@ export default function Hero() {
         }}
       />
       <motion.div 
-        className="absolute bottom-0 left-0 w-[30rem] h-[30rem] bg-neon-blue/30 rounded-full blur-[120px] pointer-events-none mix-blend-screen"
+        className="absolute bottom-0 left-0 w-120 h-120 bg-neon-blue/30 rounded-full blur-[120px] pointer-events-none mix-blend-screen"
         animate={{
           scale: [1, 1.3, 1],
           opacity: [0.3, 0.7, 0.3],
