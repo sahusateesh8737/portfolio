@@ -6,14 +6,14 @@ import { FaUniversity, FaGraduationCap } from 'react-icons/fa';
 export default function About() {
   const education = [
     {
-      year: '2022 - Present',
+      year: '2023 - Present',
       title: 'B.Tech Computer Science & Engineering',
       institution: 'Lovely Professional University',
       description: 'Specializing in Full Stack Development.',
       icon: FaUniversity,
     },
     {
-      year: '2020 - 2022',
+      year: '2020 - 2021',
       title: 'Higher Secondary Education',
       institution: 'UP Board',
       description: 'Focus on Physics, Chemistry, and Mathematics.',

@@ -170,7 +170,7 @@ export default function Hero() {
               <img 
                 src="/satish.jpg" 
                 alt="Satish Sahu" 
-                className="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer"
+                className="w-full h-full object-cover object-center  transition-all duration-500 cursor-pointer"
               />
             </div>
           </div>
